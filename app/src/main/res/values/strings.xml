@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">test_app</string>
+    <string name="tvText">Hello guys! How\'s it going. This is a test string</string>
+    <string name="toastText">This is a toast text</string>
+</resources>
