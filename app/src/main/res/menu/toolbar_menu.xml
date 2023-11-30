@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_home"
+        android:title="home"
+        android:id="@+id/it_home"
+        app:showAsAction="always"/>
+
+
+    <item
+        android:icon="@drawable/ic_list"
+        android:title="list"
+        android:id="@+id/it_list"
+        app:showAsAction="always"/>
+
+
+    <item
+        android:title="grid"
+        android:icon="@drawable/ic_grid"
+        android:id="@+id/it_grid"
+        app:showAsAction="always"/>
+
+
+
+
+
+</menu>
