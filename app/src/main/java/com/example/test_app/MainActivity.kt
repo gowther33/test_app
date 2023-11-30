@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test_app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,17 +20,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        var todos = mutableListOf<Todo>(
+            Todo("Check how to send notification", false),
+            Todo("Check Services", false)
+        )
 
 
-        binding.btnSecondActivity.setOnClickListener {
-            val name = binding.etName.text.toString()
-            val person = User(name, 21, "Staff Engineer")
-            Intent(this, SecondActivity::class.java).apply {
-                this.putExtra("EXTRA_SERIALIZABLE", person)
-                startActivity(this)
-            }
+        val adapter = TotoAdapter(todos)
+        binding.rvTodos.layoutManager = LinearLayoutManager(this)
+        binding.rvTodos.adapter = adapter
+
+
+        binding.btnAdd.setOnClickListener {
+            val title =  binding.etName.text.toString()
+            val todo = Todo(title, false)
+            todos.add(todo)
+            adapter.notifyDataSetChanged()
+//            adapter.notifyItemInserted(todos.size -1)
         }
+
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
