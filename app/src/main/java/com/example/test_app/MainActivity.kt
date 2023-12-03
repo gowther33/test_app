@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test_app.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TotoAdapter.OnItemClickListener  {
 
     lateinit var binding: ActivityMainBinding
 
@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         )
 
 
-        val adapter = TotoAdapter(todos)
-        binding.rvTodos.layoutManager = LinearLayoutManager(this)
+        val adapter = TotoAdapter(todos, this)
+        binding.rvTodos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvTodos.adapter = adapter
 
 
@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
             val title =  binding.etName.text.toString()
             val todo = Todo(title, false)
             todos.add(todo)
-            adapter.notifyDataSetChanged()
-//            adapter.notifyItemInserted(todos.size -1)
+            adapter.notifyItemInserted(todos.size-1)
         }
+
 
     }
 
@@ -54,5 +54,9 @@ class MainActivity : AppCompatActivity() {
             R.id.it_grid -> Toast.makeText(this, "Grid Button Clicked", Toast.LENGTH_SHORT).show()
         }
         return true
+    }
+
+    override fun onItemClick(position: Int) {
+        Toast.makeText(this, "Item at position: $position clicked", Toast.LENGTH_SHORT).show()
     }
 }
